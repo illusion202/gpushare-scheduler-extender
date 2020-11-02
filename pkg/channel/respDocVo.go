@@ -63,5 +63,5 @@ type OnSubmitResp struct {
 }
 
 type OnGetNextActsResp struct {
-	NextCandidateActs []*Act `json:"nextCandidateActs"`
+	NextCandidateActs []string `json:"nextCandidateActs"`
 }
