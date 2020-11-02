@@ -24,7 +24,14 @@ var (
 
 func checkBody(w http.ResponseWriter, r *http.Request) {
 	if r.Body == nil {
-		http.Error(w, "Please send a request body", 400)
+		http.Error(w, "Please send a request body", http.StatusBadRequest)
+		return
+	}
+}
+
+func checkToken(w http.ResponseWriter, r *http.Request) {
+	if r.Header == nil || r.Header.Get("token") == "" {
+		http.Error(w, "Token is required", http.StatusUnauthorized)
 		return
 	}
 }
@@ -32,6 +39,7 @@ func checkBody(w http.ResponseWriter, r *http.Request) {
 func OnSubmitRoute(onSubmit *channel.OnSubmit) httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		checkBody(w, r)
+		checkToken(w, r)
 
 		var buf bytes.Buffer
 		body := io.TeeReader(r.Body, &buf)
@@ -78,6 +86,7 @@ func OnSubmitRoute(onSubmit *channel.OnSubmit) httprouter.Handle {
 func OnGetNextActsRoute(onGetNextActs *channel.OnGetNextActs) httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 		checkBody(w, r)
+		checkToken(w, r)
 
 		var buf bytes.Buffer
 		body := io.TeeReader(r.Body, &buf)
