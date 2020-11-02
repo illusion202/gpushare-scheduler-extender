@@ -1,25 +1,25 @@
 package routes
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 
+	"github.com/AliyunContainerService/gpushare-scheduler-extender/pkg/channel"
 	"github.com/julienschmidt/httprouter"
 )
 
 const (
-	versionPath       = "/version"
-	apiPrefix         = "/gpushare-scheduler"
-	bindPrefix        = apiPrefix + "/bind"
-	predicatesPrefix  = apiPrefix + "/filter"
-	inspectPrefix     = apiPrefix + "/inspect/:nodename"
-	inspectListPrefix = apiPrefix + "/inspect"
+	versionPath         = "/version"
+	onSubmitPrefix      = "/onsubmit"
+	onGetNextActsPrefix = "/ongetnextacts"
 )
 
 var (
 	version = "0.1.0"
-	// mu      sync.RWMutex
 )
 
 func checkBody(w http.ResponseWriter, r *http.Request) {
@@ -29,28 +29,95 @@ func checkBody(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func OnSubmitRoute()  {
-	
+func OnSubmitRoute(onSubmit *channel.OnSubmit) httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+		checkBody(w, r)
+
+		var buf bytes.Buffer
+		body := io.TeeReader(r.Body, &buf)
+
+		var postBody channel.PostBody
+		var onSubmitResp *channel.OnSubmitResp
+		failed := false
+
+		if err := json.NewDecoder(body).Decode(&postBody); err != nil {
+			onSubmitResp = &channel.OnSubmitResp{
+				ErrorMsg: err.Error(),
+			}
+			failed = true
+		} else {
+			log.Printf("debug: OnSubmitRoute PostBody =%v", postBody)
+			onSubmitResp = onSubmit.Handler(&postBody)
+		}
+
+		if len(onSubmitResp.ErrorMsg) > 0 {
+			failed = true
+		}
+
+		if resultBody, err := json.Marshal(onSubmitResp); err != nil {
+			log.Printf("warn: Failed due to %v", err)
+			// panic(err)
+			w.Header().Set("Content-Type", "application/json")
+			w.WriteHeader(http.StatusInternalServerError)
+			errMsg := fmt.Sprintf("{'error':'%s'}", err.Error())
+			w.Write([]byte(errMsg))
+		} else {
+			log.Print("info: OnSubmitResponse = ", string(resultBody))
+			w.Header().Set("Content-Type", "application/json")
+			if failed {
+				w.WriteHeader(http.StatusInternalServerError)
+			} else {
+				w.WriteHeader(http.StatusOK)
+			}
+
+			w.Write(resultBody)
+		}
+	}
 }
 
-//func InspectRoute(inspect *scheduler.Inspect) httprouter.Handle {
-//	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-//		result := inspect.Handler(ps.ByName("nodename"))
-//
-//		if resultBody, err := json.Marshal(result); err != nil {
-//			// panic(err)
-//			log.Printf("warn: Failed due to %v", err)
-//			w.Header().Set("Content-Type", "application/json")
-//			w.WriteHeader(http.StatusInternalServerError)
-//			errMsg := fmt.Sprintf("{'error':'%s'}", err.Error())
-//			w.Write([]byte(errMsg))
-//		} else {
-//			w.Header().Set("Content-Type", "application/json")
-//			w.WriteHeader(http.StatusOK)
-//			w.Write(resultBody)
-//		}
-//	}
-//}
+func OnGetNextActsRoute(onGetNextActs *channel.OnGetNextActs) httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+		checkBody(w, r)
+
+		var buf bytes.Buffer
+		body := io.TeeReader(r.Body, &buf)
+
+		var postBody channel.PostBody
+		var onGetNextActsResp *channel.OnGetNextActsResp
+		var err error
+		failed := false
+
+		if err = json.NewDecoder(body).Decode(&postBody); err != nil {
+			failed = true
+		} else {
+			log.Printf("debug: OnSubmitRoute PostBody =%v", postBody)
+			onGetNextActsResp, err = onGetNextActs.Handler(&postBody)
+		}
+
+		if err != nil {
+			failed = true
+		}
+
+		if resultBody, err := json.Marshal(onGetNextActsResp); err != nil {
+			log.Printf("warn: Failed due to %v", err)
+			// panic(err)
+			w.Header().Set("Content-Type", "application/json")
+			w.WriteHeader(http.StatusInternalServerError)
+			errMsg := fmt.Sprintf("{'error':'%s'}", err.Error())
+			w.Write([]byte(errMsg))
+		} else {
+			log.Print("info: OnSubmitResponse = ", string(resultBody))
+			w.Header().Set("Content-Type", "application/json")
+			if failed {
+				w.WriteHeader(http.StatusInternalServerError)
+			} else {
+				w.WriteHeader(http.StatusOK)
+			}
+
+			w.Write(resultBody)
+		}
+	}
+}
 
 func VersionRoute(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Fprint(w, fmt.Sprint(version))
@@ -68,7 +135,10 @@ func DebugLogging(h httprouter.Handle, path string) httprouter.Handle {
 	}
 }
 
-//func AddInspect(router *httprouter.Router, inspect *scheduler.Inspect) {
-//	router.GET(inspectPrefix, DebugLogging(InspectRoute(inspect), inspectPrefix))
-//	router.GET(inspectListPrefix, DebugLogging(InspectRoute(inspect), inspectListPrefix))
-//}
+func AddOnSubmit(router *httprouter.Router, onSubmit *channel.OnSubmit) {
+	router.POST(onSubmitPrefix, DebugLogging(OnSubmitRoute(onSubmit), onSubmitPrefix))
+}
+
+func AddOnGetNextActs(router *httprouter.Router, onGetNextActs *channel.OnGetNextActs) {
+	router.POST(onGetNextActsPrefix, DebugLogging(OnGetNextActsRoute(onGetNextActs), onGetNextActsPrefix))
+}

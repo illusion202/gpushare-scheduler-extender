@@ -55,3 +55,13 @@ type Entity struct {
 	FlowId            int64  `json:"flowId"`
 	DraftName         string `json:"draftName"`
 }
+
+type OnSubmitResp struct {
+	State    string `json:"state,omitempty"`
+	Msg      string `json:"msg,omitempty"`
+	ErrorMsg string `json:"error_msg,omitempty"`
+}
+
+type OnGetNextActsResp struct {
+	NextCandidateActs []*Act `json:"nextCandidateActs"`
+}

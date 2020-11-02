@@ -20,70 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="abbfed16-ebd5-4107-be2d-a602155c4edf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pkg/channel/respDocVo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/channel/on-getnextacts.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/channel/on-submit.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/chart/gpushare-installer/.helmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/chart/gpushare-installer/Chart.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/chart/gpushare-installer/changelog.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/chart/gpushare-installer/templates/_helpers.tpl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/chart/gpushare-installer/templates/device-plugin-evictor.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/chart/gpushare-installer/templates/device-plugin-recover.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/chart/gpushare-installer/templates/gpushare-device-plugin-ds.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/chart/gpushare-installer/templates/gpushare-device-plugin-rbac.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/chart/gpushare-installer/templates/gpushare-extender-deployment.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/chart/gpushare-installer/templates/gpushare-extender-rbac.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/chart/gpushare-installer/templates/gpushare-extender-service.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/chart/gpushare-installer/templates/schd-config-statefulset.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/chart/gpushare-installer/values.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/docker/device-plugin-evict/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/docker/device-plugin-evict/build.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/docker/device-plugin-evict/dp-evict/dp-evict-on-host.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/docker/device-plugin-evict/dp-evict/dp-evict.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/docker/device-plugin-recover/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/docker/device-plugin-recover/build.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/docker/device-plugin-recover/dp-evict/dp-recover-on-host.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/docker/device-plugin-recover/dp-evict/dp-recover.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/docker/schd-extender/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/docker/schd-extender/build.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/docker/schd-extender/schd-extender/install-sched-extender-on-host.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/docker/schd-extender/schd-extender/install-sched-extender.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployer/docker/schd-extender/schd-extender/scheduler-policy-config.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/designs/arch.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/designs/bind.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/designs/demo1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/designs/demo2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/designs/designs.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/designs/filter.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/designs/sequence.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/install.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/pd.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/userguide.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/cache/cache.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/cache/deviceinfo.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/cache/nodeinfo.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/gpushare/controller.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/channel/respDocVo.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/channel/respDocVo.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/routes/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/routes/routes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/scheduler/bind.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/scheduler/gpushare-bind.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/scheduler/gpushare-inspect.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/scheduler/gpushare-inspect.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/scheduler/gpushare-predicate.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/scheduler/inspect.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/scheduler/inspect.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/scheduler/predicate.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/utils/const.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/utils/node.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/utils/pod.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/utils/signals/signal.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/utils/signal.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/samples/1.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/samples/2.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/samples/3.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/samples/4.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/samples/docker/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/samples/docker/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/samples/docker/run.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/scheduler/gpushare-inspect.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/scheduler/inspect.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,33 +104,57 @@
       <screen x="0" y="23" width="1792" height="1028" />
     </state>
     <state x="634" y="290" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1792.1028@0.23.1792.1028" timestamp="1604284273342" />
-    <state width="1750" height="234" key="GridCell.Tab.0.bottom" timestamp="1604297933428">
-      <screen x="0" y="23" width="1792" height="1031" />
+    <state width="949" height="466" key="DebuggerActiveHint" timestamp="1604305653212">
+      <screen x="0" y="23" width="1792" height="1028" />
     </state>
-    <state width="1750" height="280" key="GridCell.Tab.0.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1604285812878" />
-    <state width="1750" height="280" key="GridCell.Tab.0.bottom/0.23.1792.1028@0.23.1792.1028" timestamp="1604286378521" />
-    <state width="1750" height="280" key="GridCell.Tab.0.bottom/0.23.1792.1030@0.23.1792.1030" timestamp="1604287900593" />
+    <state width="949" height="466" key="DebuggerActiveHint/0.23.1792.1028@0.23.1792.1028" timestamp="1604305653212" />
+    <state width="1750" height="232" key="GridCell.Tab.0.bottom" timestamp="1604309722509">
+      <screen x="0" y="23" width="1792" height="1030" />
+    </state>
+    <state width="1750" height="339" key="GridCell.Tab.0.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1604309281959" />
+    <state width="1750" height="339" key="GridCell.Tab.0.bottom/0.23.1792.1028@0.23.1792.1028" timestamp="1604306769707" />
+    <state width="1750" height="232" key="GridCell.Tab.0.bottom/0.23.1792.1030@0.23.1792.1030" timestamp="1604309722509" />
     <state width="1750" height="234" key="GridCell.Tab.0.bottom/0.23.1792.1031@0.23.1792.1031" timestamp="1604297933428" />
-    <state width="1750" height="234" key="GridCell.Tab.0.center" timestamp="1604297933427">
-      <screen x="0" y="23" width="1792" height="1031" />
+    <state width="1750" height="232" key="GridCell.Tab.0.center" timestamp="1604309722508">
+      <screen x="0" y="23" width="1792" height="1030" />
     </state>
-    <state width="1750" height="280" key="GridCell.Tab.0.center/0.23.1792.1026@0.23.1792.1026" timestamp="1604285812877" />
-    <state width="1750" height="280" key="GridCell.Tab.0.center/0.23.1792.1028@0.23.1792.1028" timestamp="1604286378520" />
-    <state width="1750" height="280" key="GridCell.Tab.0.center/0.23.1792.1030@0.23.1792.1030" timestamp="1604287900593" />
+    <state width="1750" height="339" key="GridCell.Tab.0.center/0.23.1792.1026@0.23.1792.1026" timestamp="1604309281958" />
+    <state width="1750" height="339" key="GridCell.Tab.0.center/0.23.1792.1028@0.23.1792.1028" timestamp="1604306769706" />
+    <state width="1750" height="232" key="GridCell.Tab.0.center/0.23.1792.1030@0.23.1792.1030" timestamp="1604309722508" />
     <state width="1750" height="234" key="GridCell.Tab.0.center/0.23.1792.1031@0.23.1792.1031" timestamp="1604297933427" />
-    <state width="1750" height="234" key="GridCell.Tab.0.left" timestamp="1604297933427">
-      <screen x="0" y="23" width="1792" height="1031" />
+    <state width="1750" height="232" key="GridCell.Tab.0.left" timestamp="1604309722508">
+      <screen x="0" y="23" width="1792" height="1030" />
     </state>
-    <state width="1750" height="280" key="GridCell.Tab.0.left/0.23.1792.1026@0.23.1792.1026" timestamp="1604285812877" />
-    <state width="1750" height="280" key="GridCell.Tab.0.left/0.23.1792.1028@0.23.1792.1028" timestamp="1604286378520" />
-    <state width="1750" height="280" key="GridCell.Tab.0.left/0.23.1792.1030@0.23.1792.1030" timestamp="1604287900592" />
+    <state width="1750" height="339" key="GridCell.Tab.0.left/0.23.1792.1026@0.23.1792.1026" timestamp="1604309281957" />
+    <state width="1750" height="339" key="GridCell.Tab.0.left/0.23.1792.1028@0.23.1792.1028" timestamp="1604306769706" />
+    <state width="1750" height="232" key="GridCell.Tab.0.left/0.23.1792.1030@0.23.1792.1030" timestamp="1604309722508" />
     <state width="1750" height="234" key="GridCell.Tab.0.left/0.23.1792.1031@0.23.1792.1031" timestamp="1604297933427" />
-    <state width="1750" height="234" key="GridCell.Tab.0.right" timestamp="1604297933428">
-      <screen x="0" y="23" width="1792" height="1031" />
+    <state width="1750" height="232" key="GridCell.Tab.0.right" timestamp="1604309722509">
+      <screen x="0" y="23" width="1792" height="1030" />
     </state>
-    <state width="1750" height="280" key="GridCell.Tab.0.right/0.23.1792.1026@0.23.1792.1026" timestamp="1604285812878" />
-    <state width="1750" height="280" key="GridCell.Tab.0.right/0.23.1792.1028@0.23.1792.1028" timestamp="1604286378521" />
-    <state width="1750" height="280" key="GridCell.Tab.0.right/0.23.1792.1030@0.23.1792.1030" timestamp="1604287900593" />
+    <state width="1750" height="339" key="GridCell.Tab.0.right/0.23.1792.1026@0.23.1792.1026" timestamp="1604309281958" />
+    <state width="1750" height="339" key="GridCell.Tab.0.right/0.23.1792.1028@0.23.1792.1028" timestamp="1604306769707" />
+    <state width="1750" height="232" key="GridCell.Tab.0.right/0.23.1792.1030@0.23.1792.1030" timestamp="1604309722509" />
     <state width="1750" height="234" key="GridCell.Tab.0.right/0.23.1792.1031@0.23.1792.1031" timestamp="1604297933428" />
+    <state width="1750" height="223" key="GridCell.Tab.1.bottom" timestamp="1604306666364">
+      <screen x="0" y="23" width="1792" height="1028" />
+    </state>
+    <state width="1750" height="223" key="GridCell.Tab.1.bottom/0.23.1792.1028@0.23.1792.1028" timestamp="1604306666364" />
+    <state width="1750" height="223" key="GridCell.Tab.1.center" timestamp="1604306666363">
+      <screen x="0" y="23" width="1792" height="1028" />
+    </state>
+    <state width="1750" height="223" key="GridCell.Tab.1.center/0.23.1792.1028@0.23.1792.1028" timestamp="1604306666363" />
+    <state width="1750" height="223" key="GridCell.Tab.1.left" timestamp="1604306666363">
+      <screen x="0" y="23" width="1792" height="1028" />
+    </state>
+    <state width="1750" height="223" key="GridCell.Tab.1.left/0.23.1792.1028@0.23.1792.1028" timestamp="1604306666363" />
+    <state width="1750" height="223" key="GridCell.Tab.1.right" timestamp="1604306666364">
+      <screen x="0" y="23" width="1792" height="1028" />
+    </state>
+    <state width="1750" height="223" key="GridCell.Tab.1.right/0.23.1792.1028@0.23.1792.1028" timestamp="1604306666364" />
+    <state x="672" y="298" key="com.goide.refactor.move.GoMoveDeclarationDialog" timestamp="1604305552891">
+      <screen x="0" y="23" width="1792" height="1028" />
+    </state>
+    <state x="672" y="298" key="com.goide.refactor.move.GoMoveDeclarationDialog/0.23.1792.1028@0.23.1792.1028" timestamp="1604305552891" />
   </component>
 </project>

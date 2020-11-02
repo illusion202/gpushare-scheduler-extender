@@ -2,14 +2,16 @@ package main
 
 import (
 	"flag"
-	"github.com/AliyunContainerService/gpushare-scheduler-extender/pkg/routes"
-	"github.com/comail/colog"
-	"github.com/julienschmidt/httprouter"
 	"log"
 	"net/http"
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/AliyunContainerService/gpushare-scheduler-extender/pkg/channel"
+	"github.com/AliyunContainerService/gpushare-scheduler-extender/pkg/routes"
+	"github.com/comail/colog"
+	"github.com/julienschmidt/httprouter"
 )
 
 func main() {
@@ -32,10 +34,15 @@ func main() {
 		port = "39999"
 	}
 
+	onSubmit := channel.NewOnSubmit()
+	onGetNextActs := channel.NewOnGetNextActs()
+
 	router := httprouter.New()
 
 	routes.AddPProf(router)
 	routes.AddVersion(router)
+	routes.AddOnSubmit(router, onSubmit)
+	routes.AddOnGetNextActs(router, onGetNextActs)
 
 	log.Printf("info: server starting on the port :%s", port)
 	if err := http.ListenAndServe(":"+port, router); err != nil {
