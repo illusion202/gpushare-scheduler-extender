@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/AliyunContainerService/gpushare-scheduler-extender/pkg/channel"
-	"github.com/AliyunContainerService/gpushare-scheduler-extender/pkg/routes"
+	"github.com/KuaishouContainerService/quota-order-webhook/pkg/channel"
+	"github.com/KuaishouContainerService/quota-order-webhook/pkg/routes"
 	"github.com/comail/colog"
 	"github.com/julienschmidt/httprouter"
 )

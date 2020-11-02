@@ -8,7 +8,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/AliyunContainerService/gpushare-scheduler-extender/pkg/channel"
+	"github.com/KuaishouContainerService/quota-order-webhook/pkg/channel"
 	"github.com/julienschmidt/httprouter"
 )
 

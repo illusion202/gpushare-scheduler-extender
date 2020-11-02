@@ -1,12 +1,12 @@
 FROM golang:1.10-stretch as build
 
-WORKDIR /go/src/github.com/AliyunContainerService/gpushare-scheduler-extender
+WORKDIR /go/src/github.com/KuaishouContainerService/quota-order-webhook
 COPY . .
 
-RUN go build -o /go/bin/gpushare-sche-extender cmd/*.go
+RUN go build -o /go/bin/quota-order-webhook cmd/*.go
 
 FROM debian:stretch-slim
 
-COPY --from=build /go/bin/gpushare-sche-extender /usr/bin/gpushare-sche-extender
+COPY --from=build /go/bin/quota-order-webhook /usr/bin/quota-order-webhook
 
-CMD ["gpushare-sche-extender"]
+CMD ["quota-order-webhook"]

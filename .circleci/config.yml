@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
     - image: circleci/golang:1.10
-    working_directory: /go/src/github.com/AliyunContainerService/gpushare-scheduler-extender
+    working_directory: /go/src/github.com/KuaishouContainerService/quota-order-webhook
     steps:
     - checkout
     - setup_remote_docker:
@@ -14,7 +14,7 @@ jobs:
           test -z $(go fmt ./...)
           go vet ./...
           go test -race -v ./...
-    - run: docker build -t acs/gpushare-scheduler-extender:$CIRCLE_BUILD_NUM .
+    - run: docker build -t acs/quota-order-webhook:$CIRCLE_BUILD_NUM .
     - run:
         name: codecov
         command: |
