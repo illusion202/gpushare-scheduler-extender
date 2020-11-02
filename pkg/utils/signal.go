@@ -1,4 +1,4 @@
-package signals
+package utils
 
 import (
 	"os"
