@@ -21,7 +21,10 @@ func NewOnGetNextActs() *OnGetNextActs {
 		Func: func(body *PostBody) (*OnGetNextActsResp, error) {
 			// TODO do something
 			fmt.Println("====================== ongetnextacts")
-			return &OnGetNextActsResp{}, nil
+			strArr := []string{"CdnBizConfirm", "End"}
+			return &OnGetNextActsResp{
+				strArr,
+			}, nil
 		},
 	}
 }

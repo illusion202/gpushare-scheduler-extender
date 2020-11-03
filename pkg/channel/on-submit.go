@@ -14,6 +14,8 @@ func (s OnSubmit) Handler(body *PostBody) *OnSubmitResp {
 		errMsg = err.Error()
 	}
 	return &OnSubmitResp{
+		State:    STATE_DONE,
+		Msg:      "成功",
 		ErrorMsg: errMsg,
 	}
 }

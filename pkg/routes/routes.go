@@ -22,24 +22,27 @@ var (
 	version = "0.1.0"
 )
 
-func checkBody(w http.ResponseWriter, r *http.Request) {
+func checkBody(w http.ResponseWriter, r *http.Request) bool {
 	if r.Body == nil {
 		http.Error(w, "Please send a request body", http.StatusBadRequest)
-		return
+		return false
 	}
+	return true
 }
 
-func checkToken(w http.ResponseWriter, r *http.Request) {
-	if r.Header == nil || r.Header.Get("token") == "" {
+func checkToken(w http.ResponseWriter, r *http.Request) bool {
+	if r.Header == nil || r.Header.Get("Authorization") == "" {
 		http.Error(w, "Token is required", http.StatusUnauthorized)
-		return
+		return false
 	}
+	return true
 }
 
 func OnSubmitRoute(onSubmit *channel.OnSubmit) httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-		checkBody(w, r)
-		checkToken(w, r)
+		if !checkBody(w, r) || !checkToken(w, r) {
+			return
+		}
 
 		var buf bytes.Buffer
 		body := io.TeeReader(r.Body, &buf)
@@ -85,8 +88,9 @@ func OnSubmitRoute(onSubmit *channel.OnSubmit) httprouter.Handle {
 
 func OnGetNextActsRoute(onGetNextActs *channel.OnGetNextActs) httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-		checkBody(w, r)
-		checkToken(w, r)
+		if !checkBody(w, r) || !checkToken(w, r) {
+			return
+		}
 
 		var buf bytes.Buffer
 		body := io.TeeReader(r.Body, &buf)
