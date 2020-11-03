@@ -34,9 +34,9 @@ func NewOnSubmit() *OnSubmit {
 				log.Printf("info: onSubmit post body: %s", string(submitJson))
 			}
 
-			actName := body.CurAct.ActName
+			curActName := body.CurAct.ActName
 			var ret = OnSubmitResp{}
-			switch actName {
+			switch curActName {
 			case ACT_BIZSREREVIEW:
 				{
 					ret, err = onSubmitBizSreReview(body)
@@ -51,12 +51,12 @@ func NewOnSubmit() *OnSubmit {
 				}
 			default:
 				{
-					log.Printf("error: unexpected actName [%s]", actName)
-					return nil, fmt.Errorf("error: unexpected actName [%s]", actName)
+					log.Printf("error: unexpected curActName [%s]", curActName)
+					return nil, fmt.Errorf("error: unexpected curActName [%s]", curActName)
 				}
 			}
 			if err != nil {
-				log.Printf("error: onSubmit current_act_name[%s], error: %s", actName, err.Error())
+				log.Printf("error: onSubmit current_act_name[%s], error: %s", curActName, err.Error())
 			}
 			return &ret, err
 		},
