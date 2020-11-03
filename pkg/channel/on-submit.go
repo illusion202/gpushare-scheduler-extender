@@ -1,32 +1,85 @@
 package channel
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+)
 
 type OnSubmit struct {
 	Name string
-	Func func(body *PostBody) error
+	Func func(body *PostBody) (*OnSubmitResp, error)
 }
 
 func (s OnSubmit) Handler(body *PostBody) *OnSubmitResp {
-	err := s.Func(body)
+	resp, err := s.Func(body)
 	errMsg := ""
 	if err != nil {
 		errMsg = err.Error()
+		return &OnSubmitResp{
+			ErrorMsg: errMsg,
+		}
 	}
-	return &OnSubmitResp{
-		State:    STATE_DONE,
-		Msg:      "成功",
-		ErrorMsg: errMsg,
-	}
+	return resp
 }
 
 func NewOnSubmit() *OnSubmit {
 	return &OnSubmit{
 		Name: "onsubmit",
-		Func: func(body *PostBody) error {
-			// TODO do something
-			fmt.Println("====================== onsubmit")
-			return nil
+		Func: func(body *PostBody) (*OnSubmitResp, error) {
+			submitJson, err := json.Marshal(body)
+			if err != nil {
+				log.Printf("error: onSubmit post body Marshal error: %s", err.Error())
+			} else {
+				log.Printf("info: onSubmit post body: %s", string(submitJson))
+			}
+
+			actName := body.CurAct.ActName
+			var ret = OnSubmitResp{}
+			switch actName {
+			case ACT_BIZSREREVIEW:
+				{
+					ret, err = onSubmitBizSreReview(body)
+				}
+			case ACT_ADDQUOTA:
+				{
+					ret, err = onSubmitAddQuota(body)
+				}
+			case ACT_TRANSFERQUOTA:
+				{
+					ret, err = onSubmitTransferQuota(body)
+				}
+			default:
+				{
+					log.Printf("error: unexpected actName [%s]", actName)
+					return nil, fmt.Errorf("error: unexpected actName [%s]", actName)
+				}
+			}
+			if err != nil {
+				log.Printf("error: onSubmit current_act_name[%s], error: %s", actName, err.Error())
+			}
+			return &ret, err
 		},
 	}
+}
+
+// 业务线SRE审批
+func onSubmitBizSreReview(body *PostBody) (resp OnSubmitResp, err error) {
+	log.Println("debug: onSubmitBizSreReview")
+
+	return resp, err
+}
+
+// 配额新增
+func onSubmitAddQuota(body *PostBody) (resp OnSubmitResp, err error) {
+	log.Println("debug: onSubmitAddQuota")
+
+	return resp, err
+}
+
+// 配额转移
+func onSubmitTransferQuota(body *PostBody) (resp OnSubmitResp, err error) {
+	log.Println("debug: onSubmitTransferQuota")
+
+	return resp, err
 }

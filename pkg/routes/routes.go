@@ -14,8 +14,9 @@ import (
 
 const (
 	versionPath         = "/version"
-	onSubmitPrefix      = "/onsubmit"
-	onGetNextActsPrefix = "/ongetnextacts"
+	apiPrefix           = "/api/quota"
+	onSubmitPrefix      = apiPrefix + "/onSubmit"
+	onGetNextActsPrefix = apiPrefix + "/onGetNextActs"
 )
 
 var (
@@ -49,22 +50,17 @@ func OnSubmitRoute(onSubmit *channel.OnSubmit) httprouter.Handle {
 
 		var postBody channel.PostBody
 		var onSubmitResp *channel.OnSubmitResp
-		failed := false
 
 		if err := json.NewDecoder(body).Decode(&postBody); err != nil {
-			onSubmitResp = &channel.OnSubmitResp{
-				ErrorMsg: err.Error(),
-			}
-			failed = true
-		} else {
-			log.Printf("debug: OnSubmitRoute PostBody =%v", postBody)
-			onSubmitResp = onSubmit.Handler(&postBody)
+			log.Printf("warn: Failed due to %v", err)
+			w.Header().Set("Content-Type", "application/json")
+			w.WriteHeader(http.StatusBadRequest)
+			errMsg := fmt.Sprintf("{'error':'%s'}", err.Error())
+			w.Write([]byte(errMsg))
+			return
 		}
 
-		if len(onSubmitResp.ErrorMsg) > 0 {
-			failed = true
-		}
-
+		onSubmitResp = onSubmit.Handler(&postBody)
 		if resultBody, err := json.Marshal(onSubmitResp); err != nil {
 			log.Printf("warn: Failed due to %v", err)
 			// panic(err)
@@ -75,7 +71,7 @@ func OnSubmitRoute(onSubmit *channel.OnSubmit) httprouter.Handle {
 		} else {
 			log.Print("info: OnSubmitResponse = ", string(resultBody))
 			w.Header().Set("Content-Type", "application/json")
-			if failed {
+			if len(onSubmitResp.ErrorMsg) > 0 {
 				w.WriteHeader(http.StatusInternalServerError)
 			} else {
 				w.WriteHeader(http.StatusOK)
@@ -97,20 +93,18 @@ func OnGetNextActsRoute(onGetNextActs *channel.OnGetNextActs) httprouter.Handle 
 
 		var postBody channel.PostBody
 		var onGetNextActsResp *channel.OnGetNextActsResp
-		var err error
-		failed := false
+		var err, handleErr error
 
 		if err = json.NewDecoder(body).Decode(&postBody); err != nil {
-			failed = true
-		} else {
-			log.Printf("debug: OnSubmitRoute PostBody =%v", postBody)
-			onGetNextActsResp, err = onGetNextActs.Handler(&postBody)
+			log.Printf("warn: Failed due to %v", err)
+			w.Header().Set("Content-Type", "application/json")
+			w.WriteHeader(http.StatusBadRequest)
+			errMsg := fmt.Sprintf("{'error':'%s'}", err.Error())
+			w.Write([]byte(errMsg))
+			return
 		}
 
-		if err != nil {
-			failed = true
-		}
-
+		onGetNextActsResp, handleErr = onGetNextActs.Handler(&postBody)
 		if resultBody, err := json.Marshal(onGetNextActsResp); err != nil {
 			log.Printf("warn: Failed due to %v", err)
 			// panic(err)
@@ -119,15 +113,16 @@ func OnGetNextActsRoute(onGetNextActs *channel.OnGetNextActs) httprouter.Handle 
 			errMsg := fmt.Sprintf("{'error':'%s'}", err.Error())
 			w.Write([]byte(errMsg))
 		} else {
-			log.Print("info: OnSubmitResponse = ", string(resultBody))
+			log.Print("info: OnGetNextActsResponse = ", string(resultBody))
 			w.Header().Set("Content-Type", "application/json")
-			if failed {
+			if handleErr != nil {
 				w.WriteHeader(http.StatusInternalServerError)
+				errMsg := fmt.Sprintf("{'error':'%s'}", handleErr.Error())
+				w.Write([]byte(errMsg))
 			} else {
 				w.WriteHeader(http.StatusOK)
+				w.Write(resultBody)
 			}
-
-			w.Write(resultBody)
 		}
 	}
 }
