@@ -43,7 +43,7 @@ func NewOnSubmit() *OnSubmit {
 				}
 			case ACT_ADDQUOTA:
 				{
-					ret, err = onSubmitAddQuota(body)
+					// do nothing
 				}
 			case ACT_TRANSFERQUOTA:
 				{
@@ -66,13 +66,25 @@ func NewOnSubmit() *OnSubmit {
 // 业务线SRE审批
 func onSubmitBizSreReview(body *PostBody) (resp OnSubmitResp, err error) {
 	log.Println("debug: onSubmitBizSreReview")
-
-	return resp, err
-}
-
-// 配额新增
-func onSubmitAddQuota(body *PostBody) (resp OnSubmitResp, err error) {
-	log.Println("debug: onSubmitAddQuota")
+	// 下一步
+	nextActName := body.NextAct.ActName
+	switch nextActName {
+	case ACT_ADDQUOTA:
+		{
+			// 配额新增，调用配额新增接口（容器云配额申请供KRP调用接口：杨挺 https://docs.corp.kuaishou.com/d/home/fcADS92Swm2-KBX3JrnQsOEJD#）
+			// 设置state为DOING，失败设置为FAIL
+		}
+	case ACT_TRANSFERQUOTA:
+		{
+			// 设置state为DONE
+			resp = OnSubmitResp{
+				State: STATE_DONE,
+			}
+		}
+	default:
+		log.Printf("error: onSubmitBizSreReview unexpected nextActName [%s]", nextActName)
+		return resp, fmt.Errorf("error: onSubmitBizSreReview unexpected nextActName [%s]", nextActName)
+	}
 
 	return resp, err
 }
@@ -81,5 +93,7 @@ func onSubmitAddQuota(body *PostBody) (resp OnSubmitResp, err error) {
 func onSubmitTransferQuota(body *PostBody) (resp OnSubmitResp, err error) {
 	log.Println("debug: onSubmitTransferQuota")
 
+	// 调用容器云配额迁移接口（https://wiki.corp.kuaishou.com/pages/viewpage.action?pageId=450791699 /api/v2/resource-quota/transfer）
+	// 设置state为DONE，失败设置为FAIL
 	return resp, err
 }

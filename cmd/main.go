@@ -34,6 +34,18 @@ func main() {
 		port = "39999"
 	}
 
+	channel.URL = os.Getenv("URL")
+	if channel.URL == "" {
+		log.Fatal("URL must be provided.")
+	}
+	log.Printf("debug: URL is :%s", channel.URL)
+
+	channel.Token = os.Getenv("TOKEN")
+	if channel.Token == "" {
+		log.Fatal("TOKEN must be provided.")
+	}
+	log.Printf("debug: TOKEN is :%s", channel.Token)
+
 	onSubmit := channel.NewOnSubmit()
 	onGetNextActs := channel.NewOnGetNextActs()
 

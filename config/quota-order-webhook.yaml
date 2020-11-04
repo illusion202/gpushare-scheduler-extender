@@ -36,6 +36,10 @@ spec:
             value: debug
           - name: PORT
             value: "12345"
+          - name: URL
+            value: "https://bp-beta.corp.kuaishou.com/"
+          - name: TOKEN
+            value: "4d75a6f1d7ee711039bff4b842c7d0f5"
 
 # service.yaml            
 ---
