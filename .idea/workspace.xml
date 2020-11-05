@@ -21,13 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="abbfed16-ebd5-4107-be2d-a602155c4edf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/quota-order-webhook.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/quota-order-webhook.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/channel/consts.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/channel/consts.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/channel/on-submit.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/channel/on-submit.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/channel/quotaApplyVo.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/channel/quotaApplyVo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/channel/quotaTransferVo.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/channel/quotaTransferVo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/routes/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/routes/routes.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -158,6 +158,7 @@ func onSubmitTransferQuota(body *PostBody) (resp OnSubmitResp, err error) {
 		State: STATE_DONE,
 	}
 
+	// TODO 确认配额转移请求body参数怎么填充
 	reqBody := QuotaTransferReq{
 		Approved:     true,
 		UserId:       "sunxiaofei",
