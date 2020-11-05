@@ -36,10 +36,14 @@ spec:
             value: debug
           - name: PORT
             value: "12345"
-          - name: URL
-            value: "https://bp-beta.corp.kuaishou.com/"
-          - name: TOKEN
+          - name: APPLY_QUOTA_URL
+            value: "https://bp-beta.corp.kuaishou.com"
+          - name: APPLY_QUOTA_TOKEN
             value: "4d75a6f1d7ee711039bff4b842c7d0f5"
+          - name: TRANSFER_QUOTA_URL
+            value: "https://kcs-test.corp.kuaishou.com"
+          - name: TRANSFER_QUOTA_TOKEN
+            value: "7d5c3f66-5986-422d-9d06-fbd951b90c6e"
 
 # service.yaml            
 ---

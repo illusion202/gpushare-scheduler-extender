@@ -33,7 +33,7 @@ func checkBody(w http.ResponseWriter, r *http.Request) bool {
 
 func checkToken(w http.ResponseWriter, r *http.Request) bool {
 	if r.Header == nil || r.Header.Get("Authorization") == "" {
-		http.Error(w, "Token is required", http.StatusUnauthorized)
+		http.Error(w, "ApplyQuotaToken is required", http.StatusUnauthorized)
 		return false
 	}
 	return true

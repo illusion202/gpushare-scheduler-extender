@@ -34,17 +34,29 @@ func main() {
 		port = "39999"
 	}
 
-	channel.URL = os.Getenv("URL")
-	if channel.URL == "" {
-		log.Fatal("URL must be provided.")
+	channel.ApplyQuotaURL = os.Getenv("APPLY_QUOTA_URL")
+	if channel.ApplyQuotaURL == "" {
+		log.Fatal("APPLY_QUOTA_URL must be provided.")
 	}
-	log.Printf("debug: URL is :%s", channel.URL)
+	log.Printf("debug: APPLY_QUOTA_URL is :%s", channel.ApplyQuotaURL)
 
-	channel.Token = os.Getenv("TOKEN")
-	if channel.Token == "" {
-		log.Fatal("TOKEN must be provided.")
+	channel.ApplyQuotaToken = os.Getenv("APPLY_QUOTA_TOKEN")
+	if channel.ApplyQuotaToken == "" {
+		log.Fatal("APPLY_QUOTA_TOKEN must be provided.")
 	}
-	log.Printf("debug: TOKEN is :%s", channel.Token)
+	log.Printf("debug: APPLY_QUOTA_TOKEN is :%s", channel.ApplyQuotaToken)
+
+	channel.TransferQuotaURL = os.Getenv("TRANSFER_QUOTA_URL")
+	if channel.TransferQuotaURL == "" {
+		log.Fatal("TRANSFER_QUOTA_URL must be provided.")
+	}
+	log.Printf("debug: TRANSFER_QUOTA_URL is :%s", channel.TransferQuotaURL)
+
+	channel.TransferQuotaToken = os.Getenv("TRANSFER_QUOTA_TOKEN")
+	if channel.TransferQuotaToken == "" {
+		log.Fatal("TRANSFER_QUOTA_TOKEN must be provided.")
+	}
+	log.Printf("debug: TRANSFER_QUOTA_TOKEN is :%s", channel.TransferQuotaToken)
 
 	onSubmit := channel.NewOnSubmit()
 	onGetNextActs := channel.NewOnGetNextActs()

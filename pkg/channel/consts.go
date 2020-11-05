@@ -23,5 +23,7 @@ const (
 	QUOTA_TRANSFER_URI = "/api/v2/resource-quota/transfer"                                   // 配额转移URI
 )
 
-var URL string
-var Token string
+var ApplyQuotaURL string
+var ApplyQuotaToken string
+var TransferQuotaURL string
+var TransferQuotaToken string

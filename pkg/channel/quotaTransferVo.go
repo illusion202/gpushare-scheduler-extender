@@ -1,6 +1,11 @@
 package channel
 
-// 容器云配额转移Request, URI: /api/v2/resource-quota/transfer
+// 容器云配额转移Request
+// 示例：
+// curl -H 'Authorization: 7d5c3f66-5986-422d-9d06-fbd951b90c6e' \
+// -H 'Content-Type: application/json' \
+// -d '{"approved": true,"user_id": "sunxiaofei","node_id":1,"tnode_id":1,"tuser_id":"haoshiying","region":"HB1","az":"YZ","group":"all","resource_pool":"默认资源池","description":"xxx","quota":{"cpu":10,"memory":10,"gpu":1}}' \
+// -X POST https://kcs-test.corp.kuaishou.com/api/v2/resource-quota/transfer
 type QuotaTransferReq struct {
 	Approved     bool   `json:"approved"`
 	UserId       string `json:"user_id"`

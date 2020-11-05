@@ -2,7 +2,7 @@ package channel
 
 // 容器云配额申请Request
 // 示例：
-// curl -H 'Authorization: Token 4d75a6f1d7ee711039bff4b842c7d0f5' \
+// curl -H 'Authorization: ApplyQuotaToken 4d75a6f1d7ee711039bff4b842c7d0f5' \
 // -H 'Content-Type: application/json' \
 // -d '{"orderId":40622,"pageNum":1,"pageSize":10}' \
 // -X POST https://bp-beta.corp.kuaishou.com/api/scm/purchaseforecast/purchase-forecast-list/v1/forecast/list
